@@ -1,0 +1,189 @@
+{
+  "openapi" : "3.0.3",
+  "info" : {
+    "title" : "Tyk Todos",
+    "contact" : { },
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : ""
+  } ],
+  "security" : [ {
+    "Authorization" : [ ]
+  } ],
+  "paths" : {
+    "/todos" : {
+      "get" : {
+        "summary" : "GetSingleTodo",
+        "description" : "GetSingleTodo",
+        "operationId" : "getsingletodo",
+        "parameters" : [ {
+          "name" : "todoId",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "2"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      },
+      "put" : {
+        "summary" : "UpdateTodo",
+        "description" : "UpdateTodo",
+        "operationId" : "updatetodo",
+        "parameters" : [ {
+          "name" : "todoId",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "2"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/todos_body"
+              },
+              "example" : {
+                "completed" : "true"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "DeleteTodo",
+        "description" : "DeleteTodo",
+        "operationId" : "deletetodo",
+        "parameters" : [ {
+          "name" : "todoId",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "2"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      }
+    },
+    "/todos/create" : {
+      "post" : {
+        "summary" : "CreateTodo",
+        "description" : "CreateTodo",
+        "operationId" : "createtodo",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/todos_create_body"
+              },
+              "example" : {
+                "task" : {
+                  "isCompleted" : true,
+                  "name" : "Use DummyJSON in the project"
+                },
+                "user" : {
+                  "id" : 5
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      }
+    },
+    "/todos/list" : {
+      "get" : {
+        "summary" : "GetAllTodos",
+        "description" : "GetAllTodos",
+        "operationId" : "getalltodos",
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "todoscreate_user" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "number",
+            "example" : 5
+          }
+        }
+      },
+      "todos_body" : {
+        "type" : "object",
+        "properties" : {
+          "completed" : {
+            "type" : "string",
+            "example" : "true"
+          }
+        }
+      },
+      "todoscreate_task" : {
+        "type" : "object",
+        "properties" : {
+          "isCompleted" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Use DummyJSON in the project"
+          }
+        }
+      },
+      "todos_create_body" : {
+        "type" : "object",
+        "properties" : {
+          "task" : {
+            "$ref" : "#/components/schemas/todoscreate_task"
+          },
+          "user" : {
+            "$ref" : "#/components/schemas/todoscreate_user"
+          }
+        }
+      }
+    },
+    "securitySchemes" : {
+      "Authorization" : {
+        "type" : "apiKey",
+        "description" : "Request must include a valid API Key",
+        "name" : "Authorization",
+        "in" : "header"
+      }
+    }
+  }
+}
