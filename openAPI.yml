@@ -1,0 +1,206 @@
+openapi: 3.0.3
+info:
+  title: Tyk Todos Sandbox
+  version: 1.0.0
+  contact: {}
+servers:
+  - url: ''
+  - url: https://api.getpostman.com
+paths:
+  /sandbox/todos:
+    get:
+      summary: GetSingleTodo
+      description: GetSingleTodo
+      operationId: getsingletodo
+      parameters:
+        - name: todoId
+          in: query
+          schema:
+            type: string
+            example: '1'
+        - name: Secret
+          in: header
+          schema:
+            type: string
+            example: ''
+        - name: username
+          in: header
+          schema:
+            type: string
+            example: ''
+        - name: password
+          in: header
+          schema:
+            type: string
+            example: ''
+      responses:
+        '200':
+          description: ''
+    put:
+      summary: UpdateTodo
+      description: UpdateTodo
+      operationId: updatetodo
+      parameters:
+        - name: todoId
+          in: query
+          schema:
+            type: string
+            example: '2'
+        - name: Secret
+          in: header
+          schema:
+            type: string
+            example: ''
+        - name: username
+          in: header
+          schema:
+            type: string
+            example: ''
+        - name: password
+          in: header
+          schema:
+            type: string
+            example: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                completed:
+                  type: string
+                  example: 'true'
+            example:
+              completed: 'true'
+      responses:
+        '200':
+          description: ''
+    delete:
+      summary: DeleteTodo
+      description: DeleteTodo
+      operationId: deletetodo
+      parameters:
+        - name: todoId
+          in: query
+          schema:
+            type: string
+            example: '2'
+        - name: Secret
+          in: header
+          schema:
+            type: string
+            example: ''
+        - name: username
+          in: header
+          schema:
+            type: string
+            example: ''
+        - name: password
+          in: header
+          schema:
+            type: string
+            example: ''
+      requestBody:
+        content:
+          text/plain:
+            example: ''
+      responses:
+        '200':
+          description: ''
+  /collections/{collectionId}:
+    get:
+      summary: https://api.getpostman.com/collections/:collectionId
+      description: https://api.getpostman.com/collections/:collectionId
+      operationId: httpsApiGetpostmanComCollectionsCollectionid
+      parameters:
+        - name: x-tyk-authorization
+          in: header
+          schema:
+            type: string
+            example: 7ec859348776448f6bec2f2d08a26aa7
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: collectionId
+        in: path
+        required: true
+        schema:
+          type: string
+          example: ''
+  /sandbox/todos/create:
+    post:
+      summary: CreateTodo
+      description: CreateTodo
+      operationId: createtodo
+      parameters:
+        - name: Secret
+          in: header
+          schema:
+            type: string
+            example: ''
+        - name: username
+          in: header
+          schema:
+            type: string
+            example: ''
+        - name: password
+          in: header
+          schema:
+            type: string
+            example: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                task:
+                  type: object
+                  properties:
+                    isCompleted:
+                      type: boolean
+                      example: true
+                    name:
+                      type: string
+                      example: Use DummyJSON in the project
+                user:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                      example: 5
+            example:
+              task:
+                isCompleted: true
+                name: Use DummyJSON in the project
+              user:
+                id: 5
+      responses:
+        '200':
+          description: ''
+  /sandbox/todos/list:
+    get:
+      summary: GetAllTodos
+      description: GetAllTodos
+      operationId: getalltodos
+      parameters:
+        - name: Secret
+          in: header
+          schema:
+            type: string
+            example: ''
+        - name: username
+          in: header
+          schema:
+            type: string
+            example: ''
+        - name: password
+          in: header
+          schema:
+            type: string
+            example: ''
+      responses:
+        '200':
+          description: ''
+tags: []
